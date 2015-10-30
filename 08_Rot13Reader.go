@@ -19,9 +19,9 @@ func (ro *rot13Reader) Read(by []byte) (n int, err error) {
 	for i, b := range by {
 		switch {
 		case 'A' <= b && b <= 'M' || 'a' <= b && b <= 'm':
-			b = b + 13
+			b += 13
 		case 'M' < b && b <= 'Z' || 'm' < b && b <= 'z':
-			b = b - 13
+			b -= 13
 
 		}
 		by[i] = b

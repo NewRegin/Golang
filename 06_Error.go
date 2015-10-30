@@ -17,17 +17,16 @@ var z float64 = 1.0
 
 func Sqrt(x float64) (float64, error) {
 
-	if x >= 0 {
+	if x < 0 {
+		return 0, ErrNegativeSqrt(x)
+	} else {
 		var last_z = z
 		z = z - (z*z-x)/(2*z)
 		if math.Abs(last_z-z) <= 0.00001 {
 			return z, nil
-
 		}
 		return Sqrt(x)
 	}
-
-	return 0, ErrNegativeSqrt(x)
 
 }
 
