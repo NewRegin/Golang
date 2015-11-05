@@ -16,15 +16,15 @@ type rot13Reader struct {
 func (ro *rot13Reader) Read(by []byte) (n int, err error) {
 	n, err = ro.r.Read(by) //题目要求从io.Reader里读取数据
 	//fmt.Print(by)
-	for i, b := range by {
+	for i := range by {
 		switch {
-		case 'A' <= b && b <= 'M' || 'a' <= b && b <= 'm':
-			b += 13
-		case 'M' < b && b <= 'Z' || 'm' < b && b <= 'z':
-			b -= 13
+		case 'A' <= by[i] && by[i] <= 'M' || 'a' <= by[i] && by[i] <= 'm':
+			by[i] += 13
+		case 'M' < by[i] && by[i] <= 'Z' || 'm' < by[i] && by[i] <= 'z':
+			by[i] -= 13
 
 		}
-		by[i] = b
+		
 	}
 
 	return n, err
